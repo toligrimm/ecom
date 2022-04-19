@@ -2,6 +2,8 @@ import 'package:ecom/pages/shoes.dart';
 import 'package:ecom/pages/tshirts.dart';
 import 'package:flutter/material.dart';
 
+import 'accessories.dart';
+import 'bags.dart';
 import 'coats.dart';
 import 'jeans.dart';
 
@@ -20,7 +22,6 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Main Page'),
         backgroundColor: Colors.yellow,
       ),
-
       body: Scrollbar(
         isAlwaysShown: true,
         child: GridView.count(
@@ -30,8 +31,10 @@ class _HomePageState extends State<HomePage> {
           mainAxisSpacing: 10,
           crossAxisCount: 2,
           children: <Widget>[
-
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.white,
+              ),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -42,16 +45,18 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    'assets/images/cat1.jpg',
+                    'assets/images/merc.jpg',
                     width: 120,
                     height: 120,
                   ),
-                  const Text('profile'),
+                  const Text('T-Shirts'),
                 ],
               ),
             ),
-
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.white,
+              ),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -62,16 +67,18 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    'assets/images/fatty.jpg',
+                    'assets/images/jeans1.jpg',
                     width: 120,
                     height: 120,
                   ),
-                  const Text('todo'),
+                  const Text('Jeans'),
                 ],
               ),
             ),
-
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.white,
+              ),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -82,15 +89,18 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    'assets/images/lovely.jpg',
+                    'assets/images/dior.jpg',
                     width: 120,
                     height: 120,
                   ),
-                  const Text('chat'),
+                  const Text('Shoes'),
                 ],
               ),
             ),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.white,
+              ),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -101,11 +111,55 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    'assets/images/peach.jpg',
+                    'assets/images/coat.jpg',
                     width: 120,
                     height: 120,
                   ),
-                  const Text('settings'),
+                  const Text('Coats'),
+                ],
+              ),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Accessories()),
+                );
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/images/bottle.jpg',
+                    width: 120,
+                    height: 120,
+                  ),
+                  const Text('Accessories'),
+                ],
+              ),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Bags()),
+                );
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/images/bagpack.jpg',
+                    width: 120,
+                    height: 120,
+                  ),
+                  const Text('Bags'),
                 ],
               ),
             ),
