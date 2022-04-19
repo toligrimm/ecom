@@ -9,9 +9,8 @@ class Ecommerce extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: const HomePage(),
-      theme: ThemeData(primarySwatch: Colors.grey),
+    return const MaterialApp(
+        home: HomePage(),
         );
   }
 }

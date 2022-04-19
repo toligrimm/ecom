@@ -19,8 +19,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Main Page'),
-        backgroundColor: Colors.yellow,
+        title: Image.asset('assets/images/logo.jpg', fit: BoxFit.contain, height: 30,),
+
+        backgroundColor: Colors.white,
       ),
       body: Scrollbar(
         isAlwaysShown: true,
@@ -49,7 +50,7 @@ class _HomePageState extends State<HomePage> {
                     width: 120,
                     height: 120,
                   ),
-                  const Text('T-Shirts'),
+                  const Text('T-Shirts', style: TextStyle(color: Colors.black87),),
                 ],
               ),
             ),
@@ -71,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                     width: 120,
                     height: 120,
                   ),
-                  const Text('Jeans'),
+                  const Text('Jeans', style: TextStyle(color: Colors.black87),),
                 ],
               ),
             ),
@@ -93,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                     width: 120,
                     height: 120,
                   ),
-                  const Text('Shoes'),
+                  const Text('Shoes', style: TextStyle(color: Colors.black87),),
                 ],
               ),
             ),
@@ -115,7 +116,7 @@ class _HomePageState extends State<HomePage> {
                     width: 120,
                     height: 120,
                   ),
-                  const Text('Coats'),
+                  const Text('Coats', style: TextStyle(color: Colors.black87),),
                 ],
               ),
             ),
@@ -137,7 +138,7 @@ class _HomePageState extends State<HomePage> {
                     width: 120,
                     height: 120,
                   ),
-                  const Text('Accessories'),
+                  const Text('Accessories', style: TextStyle(color: Colors.black87),),
                 ],
               ),
             ),
@@ -155,11 +156,11 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    'assets/images/bagpack.jpg',
+                    'assets/images/backpack.jpg',
                     width: 120,
                     height: 120,
                   ),
-                  const Text('Bags'),
+                  const Text('Bags', style: TextStyle(color: Colors.black87),),
                 ],
               ),
             ),

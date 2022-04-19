@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 
 class Jeans extends StatefulWidget {
@@ -14,7 +12,7 @@ class _JeansState extends State<Jeans> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('T-Shirts'),
+        title: const Text('Jeans'),
       ),
     );
   }

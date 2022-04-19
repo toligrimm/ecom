@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TShirts extends StatefulWidget {
@@ -10,6 +11,11 @@ class TShirts extends StatefulWidget {
 class _TShirtsState extends State<TShirts> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: CupertinoColors.systemGrey5,
+        title: const Text('T-Shirts', style: TextStyle(color: Colors.black87),),
+      ),
+    );
   }
 }
