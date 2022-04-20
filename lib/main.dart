@@ -15,7 +15,7 @@ class Ecommerce extends StatelessWidget {
         home: const HomePage(),
       theme: ThemeData(
         appBarTheme: AppBarTheme(
-          color: CupertinoColors.systemBackground,
+          color: CupertinoColors.secondarySystemBackground,
           elevation: 0,
           iconTheme: IconThemeData(color: Colors.indigo[900]),
           titleTextStyle: TextStyle(color: Colors.indigo[900], fontSize: 20, fontWeight: FontWeight.bold),

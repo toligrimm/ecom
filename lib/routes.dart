@@ -1,5 +1,5 @@
 import 'package:ecom/pages/homepage.dart';
-import 'package:ecom/pages/loginpage.dart';
+import 'package:ecom/pages/auth/signinpage.dart';
 import 'package:flutter/widgets.dart';
 
 
