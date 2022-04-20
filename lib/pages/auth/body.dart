@@ -52,9 +52,12 @@ class SignForm extends StatefulWidget {
 }
 
 class _SignFormState extends State<SignForm> {
+  final _formKey = GlobalKey<FormState>();
+  final List<String> errors =[];
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _formKey,
       child: Padding(
         padding: const EdgeInsets.only(top: 20),
         child: Column(
@@ -115,6 +118,14 @@ class _SignFormState extends State<SignForm> {
 
   TextFormField buildEmailFormField() {
     return TextFormField(
+      validator: (value) {
+        if (value.isEmpty) {
+          setState(() {
+            errors.add('пусто мал')
+          });
+        }
+        return null;
+      },
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
           labelText: 'Почта',
