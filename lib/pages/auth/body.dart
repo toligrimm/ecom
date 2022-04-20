@@ -56,32 +56,86 @@ class _SignFormState extends State<SignForm> {
   Widget build(BuildContext context) {
     return Form(
       child: Padding(
-        padding: const EdgeInsets.only(top: 10),
+        padding: const EdgeInsets.only(top: 20),
         child: Column(
           children: [
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Почта',
-                hintText: 'Введи почту',
-                enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    borderSide: const BorderSide(
-                      color: CupertinoColors.systemOrange,
+            buildEmailFormField(),
+            const SizedBox(
+              height: 20,
+            ),
+            buildPasswordFormField(),
+            const SizedBox(height: 20,),
+            SizedBox(
+              width: 340,
+              height: 40,
+              child: ElevatedButton(onPressed: (){}, child: const Text('Войти'),
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.orangeAccent),
+                    textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 18)
                     ),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                        )
+                    )
+                )
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  TextFormField buildPasswordFormField() {
+    return TextFormField(
+            obscureText: true,
+            decoration: InputDecoration(
+                labelText: 'Пароль',
+                hintText: 'Введи пароль',
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+                contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: const BorderSide(
+                    color: CupertinoColors.systemOrange,
+                  ),
                   gapPadding: 10,
                 ),
+                suffixIcon: const Icon(CupertinoIcons.eye_slash),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(16),
                   borderSide: const BorderSide(
                     color: CupertinoColors.systemOrange,
                   ),
                   gapPadding: 10,
-                )
-              ),
-            )
-          ],
-        ),
-      ),
+                )),
+          );
+  }
+
+  TextFormField buildEmailFormField() {
+    return TextFormField(
+      keyboardType: TextInputType.emailAddress,
+      decoration: InputDecoration(
+          labelText: 'Почта',
+          hintText: 'Введи почту',
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(16),
+            borderSide: const BorderSide(
+              color: CupertinoColors.systemOrange,
+            ),
+            gapPadding: 10,
+          ),
+          suffixIcon: const Icon(CupertinoIcons.mail),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(16),
+            borderSide: const BorderSide(
+              color: CupertinoColors.systemOrange,
+            ),
+            gapPadding: 10,
+          )),
     );
   }
 }
