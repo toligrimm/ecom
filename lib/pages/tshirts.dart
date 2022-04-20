@@ -15,8 +15,7 @@ class _TShirtsState extends State<TShirts> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: CupertinoColors.systemGrey5,
-        title: const Text('T-Shirts', style: TextStyle(color: Colors.black54),),
+        title: const Text('T-Shirts'),
       ),
       body: Scrollbar(
         isAlwaysShown: true,

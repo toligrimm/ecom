@@ -18,6 +18,7 @@ class Ecommerce extends StatelessWidget {
           color: CupertinoColors.systemBackground,
           elevation: 0,
           iconTheme: IconThemeData(color: Colors.indigo[900]),
+          titleTextStyle: TextStyle(color: Colors.indigo[900], fontSize: 20, fontWeight: FontWeight.bold),
         ),
         scaffoldBackgroundColor: CupertinoColors.secondarySystemBackground,
         ),
