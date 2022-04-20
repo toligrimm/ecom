@@ -1,13 +1,15 @@
 import 'package:ecom/pages/shoes.dart';
 import 'package:ecom/pages/tshirts.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'accessories.dart';
 import 'bags.dart';
 import 'coats.dart';
 import 'jeans.dart';
+import 'loginpage.dart';
 
 class HomePage extends StatefulWidget {
+  static var routeName;
+
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -20,8 +22,15 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Image.asset('assets/images/logo.jpg', fit: BoxFit.contain, height: 30,),
-
-        backgroundColor: Colors.white,
+        actions: [
+          IconButton(onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SigninPage()),
+            );
+          }, icon: Icon(Icons.person, color: Colors.indigo[900],),)
+        ],
+        backgroundColor: Colors.orangeAccent,
       ),
       body: Scrollbar(
         isAlwaysShown: true,
