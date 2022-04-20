@@ -119,9 +119,9 @@ class _SignFormState extends State<SignForm> {
   TextFormField buildEmailFormField() {
     return TextFormField(
       validator: (value) {
-        if (value.isEmpty) {
+        if (value!.isEmpty) {
           setState(() {
-            errors.add('пусто мал')
+            errors.add('пусто мал');
           });
         }
         return null;
