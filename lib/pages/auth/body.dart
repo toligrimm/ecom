@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants.dart';
+import '../../form_error.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -89,7 +90,21 @@ class _SignFormState extends State<SignForm> {
             ),
             buildPasswordFormField(),
             const SizedBox(height: 20,),
-
+            FormError(errors: errors),
+            const SizedBox(height: 10,),
+            Row(
+              children: [
+                Checkbox(value: remember, activeColor: Colors.orange, onChanged: (value) {
+                  setState(() {
+                    remember = value;
+                  });
+                },),
+                const Text('Запомнить'),
+                const Spacer(),
+                const Text('Forgot Password', style: TextStyle(decoration: TextDecoration.underline),)
+              ],
+            ),
+            const SizedBox(height: 10,),
             SizedBox(
               width: 340,
               height: 40,
@@ -101,7 +116,7 @@ class _SignFormState extends State<SignForm> {
                 }
               }, child: const Text('Войти'),
                 style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.orangeAccent),
+                    backgroundColor: MaterialStateProperty.all(Colors.orange),
                     textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 18)
                     ),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -112,6 +127,7 @@ class _SignFormState extends State<SignForm> {
                 )
                 ),
               ),
+
           ],
         ),
       ),
@@ -121,13 +137,41 @@ class _SignFormState extends State<SignForm> {
   TextFormField buildPasswordFormField() {
     return TextFormField(
             obscureText: true,
+      onChanged: (value) {
+        if (value.isNotEmpty && errors.contains(kPassNullError)) {
+          setState(() {
+            errors.remove(kPassNullError);
+          }
+          );
+          if(value.length >= 8 && errors.contains(kShortPassError)) {
+            setState(() {
+              errors.remove(kShortPassError);
+            });
+          }
+        }
+
+      },
+      validator: (value) {
+        if (value!.isEmpty && !errors.contains(kPassNullError)) {
+          setState(() {
+            errors.add(kPassNullError);
+          }
+          );
+          if(value.length <8 && !errors.contains(kShortPassError)) {
+            setState(() {
+              errors.add(kShortPassError);
+            });
+          }
+        }
+        return null;
+      },
             decoration: InputDecoration(
                 labelText: 'Пароль',
                 hintText: 'Введи пароль',
                 floatingLabelBehavior: FloatingLabelBehavior.always,
                 contentPadding: const EdgeInsets.symmetric(horizontal: 20),
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(10),
                   borderSide: const BorderSide(
                     color: CupertinoColors.systemOrange,
                   ),
@@ -135,7 +179,7 @@ class _SignFormState extends State<SignForm> {
                 ),
                 suffixIcon: const Icon(CupertinoIcons.eye_slash),
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(10),
                   borderSide: const BorderSide(
                     color: CupertinoColors.systemOrange,
                   ),
@@ -154,7 +198,6 @@ class _SignFormState extends State<SignForm> {
         } else if (emailValidatorRegExp.hasMatch(value)) {
           removeError(error: kInvalidEmailError);
         }
-        return null;
       },
       validator: (value) {
         if (value!.isEmpty && !errors.contains(kEmailNullError)) {
@@ -176,7 +219,7 @@ class _SignFormState extends State<SignForm> {
           floatingLabelBehavior: FloatingLabelBehavior.always,
           contentPadding: const EdgeInsets.symmetric(horizontal: 20),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(
               color: CupertinoColors.systemOrange,
             ),
@@ -184,7 +227,7 @@ class _SignFormState extends State<SignForm> {
           ),
           suffixIcon: const Icon(CupertinoIcons.mail),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(
               color: CupertinoColors.systemOrange,
             ),
@@ -193,3 +236,5 @@ class _SignFormState extends State<SignForm> {
     );
   }
 }
+
+
