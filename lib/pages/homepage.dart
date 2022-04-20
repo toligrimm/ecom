@@ -1,7 +1,7 @@
 import 'package:ecom/pages/shoes.dart';
 import 'package:ecom/pages/tshirts.dart';
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import 'accessories.dart';
 import 'bags.dart';
 import 'coats.dart';
