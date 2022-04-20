@@ -1,5 +1,6 @@
 import 'package:ecom/pages/shoes.dart';
 import 'package:ecom/pages/tshirts.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'accessories.dart';
 import 'bags.dart';
@@ -20,6 +21,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
         title: Image.asset('assets/images/logo.jpg', fit: BoxFit.contain, height: 30,),
         actions: [
@@ -28,9 +30,8 @@ class _HomePageState extends State<HomePage> {
               context,
               MaterialPageRoute(builder: (context) => const SigninPage()),
             );
-          }, icon: Icon(Icons.person, color: Colors.indigo[900],),)
+          }, icon: const Icon(Icons.person),)
         ],
-        backgroundColor: Colors.orangeAccent,
       ),
       body: Scrollbar(
         isAlwaysShown: true,
@@ -44,6 +45,9 @@ class _HomePageState extends State<HomePage> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 primary: Colors.white,
+                elevation: 3,
+                shadowColor: Colors.deepPurple[200],
+
               ),
               onPressed: () {
                 Navigator.push(
@@ -66,6 +70,8 @@ class _HomePageState extends State<HomePage> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 primary: Colors.white,
+                elevation: 3,
+                shadowColor: Colors.deepPurple[200],
               ),
               onPressed: () {
                 Navigator.push(
@@ -88,6 +94,8 @@ class _HomePageState extends State<HomePage> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 primary: Colors.white,
+                elevation: 3,
+                shadowColor: Colors.deepPurple[200],
               ),
               onPressed: () {
                 Navigator.push(
@@ -110,6 +118,8 @@ class _HomePageState extends State<HomePage> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 primary: Colors.white,
+                elevation: 3,
+                shadowColor: Colors.deepPurple[200],
               ),
               onPressed: () {
                 Navigator.push(
@@ -132,6 +142,8 @@ class _HomePageState extends State<HomePage> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 primary: Colors.white,
+                elevation: 3,
+                shadowColor: Colors.deepPurple[200],
               ),
               onPressed: () {
                 Navigator.push(
@@ -154,6 +166,8 @@ class _HomePageState extends State<HomePage> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 primary: Colors.white,
+                elevation: 3,
+                shadowColor: Colors.deepPurple[200],
               ),
               onPressed: () {
                 Navigator.push(
