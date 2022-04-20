@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../constants.dart';
+
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
 
@@ -28,7 +30,7 @@ class _BodyState extends State<Body> {
                 ),
               ),
               Text(
-                'Давай регайся и покупай вещи, слышь?',
+                'Давай логинься и покупай вещи, слышь?',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.black87,
@@ -53,7 +55,26 @@ class SignForm extends StatefulWidget {
 
 class _SignFormState extends State<SignForm> {
   final _formKey = GlobalKey<FormState>();
-  final List<String> errors =[];
+  String? email;
+  String? password;
+  bool? remember = false;
+  final List<String?> errors = [];
+
+  void addError({String? error}) {
+    if (!errors.contains(error)) {
+      setState(() {
+        errors.add(error);
+      });
+    }
+  }
+
+  void removeError({String? error}) {
+    if (errors.contains(error)) {
+      setState(() {
+        errors.remove(error);
+      });
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -68,10 +89,17 @@ class _SignFormState extends State<SignForm> {
             ),
             buildPasswordFormField(),
             const SizedBox(height: 20,),
+
             SizedBox(
               width: 340,
               height: 40,
-              child: ElevatedButton(onPressed: (){}, child: const Text('Войти'),
+              child: ElevatedButton(onPressed: (){
+                if (_formKey.currentState!.validate()) {
+                  _formKey.currentState!.save();
+                  // KeyboardUtil.hideKeyboard(context);
+                  // Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+                }
+              }, child: const Text('Войти'),
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.orangeAccent),
                     textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 18)
@@ -118,15 +146,30 @@ class _SignFormState extends State<SignForm> {
 
   TextFormField buildEmailFormField() {
     return TextFormField(
-      validator: (value) {
-        if (value!.isEmpty) {
-          setState(() {
-            errors.add('пусто мал');
-          });
+      keyboardType: TextInputType.emailAddress,
+      onSaved: (newValue) => email = newValue,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          removeError(error: kEmailNullError);
+        } else if (emailValidatorRegExp.hasMatch(value)) {
+          removeError(error: kInvalidEmailError);
         }
         return null;
       },
-      keyboardType: TextInputType.emailAddress,
+      validator: (value) {
+        if (value!.isEmpty && !errors.contains(kEmailNullError)) {
+          setState(() {
+            errors.add(kEmailNullError);
+          }
+          );
+          if(!emailValidatorRegExp.hasMatch(value) && !errors.contains(kInvalidEmailError)) {
+            setState(() {
+              errors.add(kInvalidEmailError);
+            });
+        }
+        }
+        return null;
+      },
       decoration: InputDecoration(
           labelText: 'Почта',
           hintText: 'Введи почту',
