@@ -10,6 +10,10 @@ class LoginSuccess extends StatefulWidget {
 class _LoginSuccessState extends State<LoginSuccess> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Авторизация'),
+      ),
+    );
   }
 }
