@@ -1,10 +1,12 @@
 
+import 'package:ecom/pages/auth/signup/signup.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
-import '../../form_error.dart';
-import 'forgot_password/forgot_password.dart';
+import '../../../constants.dart';
+import '../../../form_error.dart';
+import 'forgot_password.dart';
+import 'login_success.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -29,14 +31,14 @@ class _BodyState extends State<Body> {
                 style: TextStyle(
                   color: Colors.black87,
                   fontSize: 28,
-                  fontWeight: FontWeight.bold,
+
                 ),
               ),
               Text(
                 'Давай логинься и покупай вещи, слышь?',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.black87,
+                  color: CupertinoColors.secondaryLabel,
                   fontSize: 18,
                 ),
               ),
@@ -114,9 +116,17 @@ class _SignFormState extends State<SignForm> {
                   ),
                   const Text('Запомнить'),
                   const Spacer(),
-                  const Text(
-                    'Forgot Password',
-                    style: TextStyle(decoration: TextDecoration.underline),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const ForgotPassword()),
+                      );
+                    },
+                    child: const Text(
+                      'Forgot Password',
+                      style: TextStyle(decoration: TextDecoration.underline),
+                    ),
                   )
                 ],
               ),
@@ -131,7 +141,10 @@ class _SignFormState extends State<SignForm> {
                       if (_formKey.currentState!.validate()) {
                         _formKey.currentState!.save();
                         // KeyboardUtil.hideKeyboard(context);
-                        // Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const LoginSuccess()),
+                        );
                       }
                     },
                     child: const Text('Войти'),
@@ -268,7 +281,12 @@ class NoAccountText extends StatelessWidget {
       children: [
         const Text('Еще нет учетки? '),
         GestureDetector(
-          onTap: () => Navigator.popAndPushNamed(context, ForgotPassword.routeName),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SignUp()),
+            );
+          },
           child: const Text('Зарегаться',
               style: TextStyle(
                 decoration: TextDecoration.underline,
