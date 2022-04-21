@@ -1,8 +1,10 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants.dart';
 import '../../form_error.dart';
+import 'forgot_password/forgot_password.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -76,59 +78,78 @@ class _SignFormState extends State<SignForm> {
       });
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
       child: Padding(
         padding: const EdgeInsets.only(top: 20),
-        child: Column(
-          children: [
-            buildEmailFormField(),
-            const SizedBox(
-              height: 20,
-            ),
-            buildPasswordFormField(),
-            const SizedBox(height: 20,),
-            FormError(errors: errors),
-            const SizedBox(height: 10,),
-            Row(
-              children: [
-                Checkbox(value: remember, activeColor: Colors.orange, onChanged: (value) {
-                  setState(() {
-                    remember = value;
-                  });
-                },),
-                const Text('Запомнить'),
-                const Spacer(),
-                const Text('Forgot Password', style: TextStyle(decoration: TextDecoration.underline),)
-              ],
-            ),
-            const SizedBox(height: 10,),
-            SizedBox(
-              width: 340,
-              height: 40,
-              child: ElevatedButton(onPressed: (){
-                if (_formKey.currentState!.validate()) {
-                  _formKey.currentState!.save();
-                  // KeyboardUtil.hideKeyboard(context);
-                  // Navigator.pushNamed(context, LoginSuccessScreen.routeName);
-                }
-              }, child: const Text('Войти'),
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.orange),
-                    textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 18)
-                    ),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                        )
-                    )
-                )
-                ),
-              ),
+        child: SingleChildScrollView(
 
-          ],
+          child: Column(
+            children: [
+              buildEmailFormField(),
+              const SizedBox(
+                height: 20,
+              ),
+              buildPasswordFormField(),
+              const SizedBox(
+                height: 20,
+              ),
+              FormError(errors: errors),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  Checkbox(
+                    value: remember,
+                    activeColor: Colors.orange,
+                    onChanged: (value) {
+                      setState(() {
+                        remember = value;
+                      });
+                    },
+                  ),
+                  const Text('Запомнить'),
+                  const Spacer(),
+                  const Text(
+                    'Forgot Password',
+                    style: TextStyle(decoration: TextDecoration.underline),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              SizedBox(
+                width: 340,
+                height: 40,
+                child: ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        _formKey.currentState!.save();
+                        // KeyboardUtil.hideKeyboard(context);
+                        // Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+                      }
+                    },
+                    child: const Text('Войти'),
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Colors.orange),
+                        textStyle: MaterialStateProperty.all(
+                            const TextStyle(fontSize: 18)),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        )))),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              const NoAccountText(),
+            ],
+          ),
         ),
       ),
     );
@@ -136,28 +157,25 @@ class _SignFormState extends State<SignForm> {
 
   TextFormField buildPasswordFormField() {
     return TextFormField(
-            obscureText: true,
+      obscureText: true,
       onChanged: (value) {
         if (value.isNotEmpty && errors.contains(kPassNullError)) {
           setState(() {
             errors.remove(kPassNullError);
-          }
-          );
-          if(value.length >= 8 && errors.contains(kShortPassError)) {
+          });
+          if (value.length >= 8 && errors.contains(kShortPassError)) {
             setState(() {
               errors.remove(kShortPassError);
             });
           }
         }
-
       },
       validator: (value) {
         if (value!.isEmpty && !errors.contains(kPassNullError)) {
           setState(() {
             errors.add(kPassNullError);
-          }
-          );
-          if(value.length <8 && !errors.contains(kShortPassError)) {
+          });
+          if (value.length < 8 && !errors.contains(kShortPassError)) {
             setState(() {
               errors.add(kShortPassError);
             });
@@ -165,27 +183,27 @@ class _SignFormState extends State<SignForm> {
         }
         return null;
       },
-            decoration: InputDecoration(
-                labelText: 'Пароль',
-                hintText: 'Введи пароль',
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                contentPadding: const EdgeInsets.symmetric(horizontal: 20),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(
-                    color: CupertinoColors.systemOrange,
-                  ),
-                  gapPadding: 10,
-                ),
-                suffixIcon: const Icon(CupertinoIcons.eye_slash),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(
-                    color: CupertinoColors.systemOrange,
-                  ),
-                  gapPadding: 10,
-                )),
-          );
+      decoration: InputDecoration(
+          labelText: 'Пароль',
+          hintText: 'Введи пароль',
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(
+              color: CupertinoColors.systemOrange,
+            ),
+            gapPadding: 10,
+          ),
+          suffixIcon: const Icon(CupertinoIcons.eye_slash),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(
+              color: CupertinoColors.systemOrange,
+            ),
+            gapPadding: 10,
+          )),
+    );
   }
 
   TextFormField buildEmailFormField() {
@@ -203,13 +221,13 @@ class _SignFormState extends State<SignForm> {
         if (value!.isEmpty && !errors.contains(kEmailNullError)) {
           setState(() {
             errors.add(kEmailNullError);
-          }
-          );
-          if(!emailValidatorRegExp.hasMatch(value) && !errors.contains(kInvalidEmailError)) {
+          });
+          if (!emailValidatorRegExp.hasMatch(value) &&
+              !errors.contains(kInvalidEmailError)) {
             setState(() {
               errors.add(kInvalidEmailError);
             });
-        }
+          }
         }
         return null;
       },
@@ -237,4 +255,27 @@ class _SignFormState extends State<SignForm> {
   }
 }
 
+class NoAccountText extends StatelessWidget {
+  const NoAccountText({
+    Key? key,
+  }) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text('Еще нет учетки? '),
+        GestureDetector(
+          onTap: () => Navigator.popAndPushNamed(context, ForgotPassword.routeName),
+          child: const Text('Зарегаться',
+              style: TextStyle(
+                decoration: TextDecoration.underline,
+                color: Colors.orange,
+              )),
+        )
+      ],
+    );
+  }
+}

@@ -2,11 +2,12 @@ import 'package:ecom/pages/catalog/shoes.dart';
 import 'package:ecom/pages/catalog/tshirts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'auth/signinpage.dart';
 import 'catalog/accessories.dart';
 import 'catalog/bags.dart';
 import 'catalog/coats.dart';
 import 'catalog/jeans.dart';
-import 'auth/signinpage.dart';
+
 
 class HomePage extends StatefulWidget {
   static var routeName;
