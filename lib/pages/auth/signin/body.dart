@@ -180,19 +180,9 @@ class _SignFormState extends State<SignForm> {
         }
         return null;
       },
-      validator: (value) {
-        if (value!.isEmpty) {
-          addError(error: kPassNullError);
-          return "";
-        } else if (value.length < 8) {
-          addError(error: kShortPassError);
-          return "";
-        }
-        return null;
-      },
       decoration: InputDecoration(
-          labelText: 'Пароль',
           hintText: 'Введи пароль',
+          labelText: 'Пароль',
           floatingLabelBehavior: FloatingLabelBehavior.always,
           contentPadding: const EdgeInsets.symmetric(horizontal: 20),
           enabledBorder: OutlineInputBorder(
@@ -217,6 +207,16 @@ class _SignFormState extends State<SignForm> {
             ),
             gapPadding: 10,
           )),
+      validator: (value) {
+        if (value!.isEmpty) {
+          addError(error: kPassNullError);
+          return "";
+        } else if (value.length < 8) {
+          addError(error: kShortPassError);
+          return "";
+        }
+        return null;
+      },
     );
   }
 
