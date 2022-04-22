@@ -19,29 +19,31 @@ class _SignUpState extends State<SignUp> {
       appBar: AppBar(
         title: const Text('Регистрация'),
       ),
-      body: Column(
-        children: const [
-          Text(
-            'Регистрация учетки',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.black87,
-              fontSize: 28,
+      body: SingleChildScrollView(
+        child: Column(
+          children: const [
+            Text(
+              'Регистрация учетки',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.black87,
+                fontSize: 28,
+              ),
             ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Text(
-            'Давай регистрируйся и покупай вещи, слышь?',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: CupertinoColors.secondaryLabel,
-              fontSize: 18,
+            SizedBox(
+              height: 10,
             ),
-          ),
-          SignUpForm(),
-        ],
+            Text(
+              'Давай регистрируйся и покупай вещи, слышь?',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: CupertinoColors.secondaryLabel,
+                fontSize: 18,
+              ),
+            ),
+            SignUpForm(),
+          ],
+        ),
       ),
     );
   }
@@ -87,205 +89,198 @@ class _SignUpFormState extends State<SignUpForm> {
         key: _formKey,
         child: Padding(
           padding: const EdgeInsets.all(20),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  keyboardType: TextInputType.emailAddress,
-                  onSaved: (newValue) => email = newValue,
-                  onChanged: (value) {
-                    if (value.isNotEmpty) {
-                      removeError(error: kEmailNullError);
-                    } else if (emailValidatorRegExp.hasMatch(value)) {
-                      removeError(error: kInvalidEmailError);
-                    }
-                  },
-                  validator: (value) {
-                    if (value!.isEmpty && !errors.contains(kEmailNullError)) {
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                keyboardType: TextInputType.emailAddress,
+                onSaved: (newValue) => email = newValue,
+                onChanged: (value) {
+                  if (value.isNotEmpty) {
+                    removeError(error: kEmailNullError);
+                  } else if (emailValidatorRegExp.hasMatch(value)) {
+                    removeError(error: kInvalidEmailError);
+                  }
+                },
+                validator: (value) {
+                  if (value!.isEmpty && !errors.contains(kEmailNullError)) {
+                    setState(() {
+                      errors.add(kEmailNullError);
+                    });
+                    if (!emailValidatorRegExp.hasMatch(value) &&
+                        !errors.contains(kInvalidEmailError)) {
                       setState(() {
-                        errors.add(kEmailNullError);
+                        errors.add(kInvalidEmailError);
                       });
-                      if (!emailValidatorRegExp.hasMatch(value) &&
-                          !errors.contains(kInvalidEmailError)) {
-                        setState(() {
-                          errors.add(kInvalidEmailError);
-                        });
-                      }
                     }
-                    return null;
-                  },
-                  decoration: InputDecoration(
-                      labelText: 'Почта',
-                      hintText: 'Введи почту',
-                      floatingLabelBehavior: FloatingLabelBehavior.always,
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 20),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: const BorderSide(
-                          color: CupertinoColors.systemOrange,
-                        ),
-                        gapPadding: 10,
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                    labelText: 'Почта',
+                    hintText: 'Введи почту',
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: const BorderSide(
+                        color: CupertinoColors.systemOrange,
                       ),
-                      suffixIcon: const Icon(CupertinoIcons.mail),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: const BorderSide(
-                          color: CupertinoColors.systemOrange,
-                        ),
-                        gapPadding: 10,
-                      )),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  obscureText: _isShown,
-                  onChanged: (value) {
-                    if (value.isNotEmpty) {
-                      removeError(error: kPassNullError);
-                    } else if (value.length >= 8) {
-                      removeError(error: kShortPassError);
-                    }
-                    password = value;
-                    // return null;
-                  },
-                  decoration: InputDecoration(
-                      hintText: 'Введи пароль',
-                      labelText: 'Пароль',
-                      floatingLabelBehavior: FloatingLabelBehavior.always,
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 20),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: const BorderSide(
-                          color: CupertinoColors.systemOrange,
-                        ),
-                        gapPadding: 10,
+                      gapPadding: 10,
+                    ),
+                    suffixIcon: const Icon(CupertinoIcons.mail),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: const BorderSide(
+                        color: CupertinoColors.systemOrange,
                       ),
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                            _isShown ? Icons.visibility : Icons.visibility_off),
-                        onPressed: () {
-                          setState(() {
-                            _isShown = !_isShown;
-                          });
-                        },
+                      gapPadding: 10,
+                    )),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                obscureText: _isShown,
+                onChanged: (value) {
+                  if (value.isNotEmpty) {
+                    removeError(error: kPassNullError);
+                  } else if (value.length >= 8) {
+                    removeError(error: kShortPassError);
+                  }
+                  password = value;
+
+                },
+                decoration: InputDecoration(
+                    hintText: 'Введи пароль',
+                    labelText: 'Пароль',
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: const BorderSide(
+                        color: CupertinoColors.systemOrange,
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: const BorderSide(
-                          color: CupertinoColors.systemOrange,
-                        ),
-                        gapPadding: 10,
-                      )),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      addError(error: kPassNullError);
-                      return "";
-                    } else if (value.length < 8) {
-                      addError(error: kShortPassError);
-                      return "";
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  obscureText: _isShown,
-                  onSaved: (newValue) => confirm_password = newValue,
-                  onChanged: (value) {
-                    if (password == confirm_password) {
-                      removeError(error: kMatchPassError);
-                    }
-                    // return null;
-                  },
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return "";
-                    } else if (password != value) {
-                      addError(error: kMatchPassError);
-                      return "";
-                    }
-                    return null;
-                  },
-                  decoration: InputDecoration(
-                      hintText: 'Подтверди пароль',
-                      labelText: 'Пароль',
-                      floatingLabelBehavior: FloatingLabelBehavior.always,
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 20),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: const BorderSide(
-                          color: CupertinoColors.systemOrange,
-                        ),
-                        gapPadding: 10,
-                      ),
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                            _isShown ? Icons.visibility : Icons.visibility_off),
-                        onPressed: () {
-                          setState(() {
-                            _isShown = !_isShown;
-                          });
-                        },
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: const BorderSide(
-                          color: CupertinoColors.systemOrange,
-                        ),
-                        gapPadding: 10,
-                      )),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                FormError(errors: errors),
-                const SizedBox(
-                  height: 10,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                SizedBox(
-                  width: 340,
-                  height: 40,
-                  child: ElevatedButton(
+                      gapPadding: 10,
+                    ),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                          _isShown ? Icons.visibility : Icons.visibility_off),
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const CompletePage()),
-                          );
-                        }
+                        setState(() {
+                          _isShown = !_isShown;
+                        });
                       },
-                      child: const Text('Подтвердить'),
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.orange),
-                          textStyle: MaterialStateProperty.all(
-                              const TextStyle(fontSize: 18)),
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          )))),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-              ],
-            ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: const BorderSide(
+                        color: CupertinoColors.systemOrange,
+                      ),
+                      gapPadding: 10,
+                    )),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    addError(error: kPassNullError);
+                    return "";
+                  } else if (value.length < 8) {
+                    addError(error: kShortPassError);
+                    return "";
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                obscureText: _isShown,
+                onSaved: (newValue) => confirm_password = newValue,
+                onChanged: (value) {
+                  if (password == confirm_password) {
+                    removeError(error: kMatchPassError);
+                  }
+                  // return null;
+                },
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "";
+                  } else if (password != value) {
+                    addError(error: kMatchPassError);
+                    return "";
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                    hintText: 'Подтверди пароль',
+                    labelText: 'Пароль',
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: const BorderSide(
+                        color: CupertinoColors.systemOrange,
+                      ),
+                      gapPadding: 10,
+                    ),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                          _isShown ? Icons.visibility : Icons.visibility_off),
+                      onPressed: () {
+                        setState(() {
+                          _isShown = !_isShown;
+                        });
+                      },
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: const BorderSide(
+                        color: CupertinoColors.systemOrange,
+                      ),
+                      gapPadding: 10,
+                    )),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              FormError(errors: errors),
+              const SizedBox(
+                height: 10,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              SizedBox(
+                width: 340,
+                height: 40,
+                child: ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const CompletePage()),
+                        );
+                      }
+                    },
+                    child: const Text('Подтвердить'),
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.orange),
+                        textStyle: MaterialStateProperty.all(
+                            const TextStyle(fontSize: 18)),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        )))),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
 }
-
-
