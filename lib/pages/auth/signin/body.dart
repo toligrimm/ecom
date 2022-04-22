@@ -1,4 +1,3 @@
-
 import 'package:ecom/pages/auth/signup/signup.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +30,6 @@ class _BodyState extends State<Body> {
                 style: TextStyle(
                   color: Colors.black87,
                   fontSize: 28,
-
                 ),
               ),
               Text(
@@ -89,9 +87,11 @@ class _SignFormState extends State<SignForm> {
       child: Padding(
         padding: const EdgeInsets.only(top: 20),
         child: SingleChildScrollView(
-
           child: Column(
             children: [
+              const SizedBox(
+                height: 20,
+              ),
               buildEmailFormField(),
               const SizedBox(
                 height: 20,
@@ -121,7 +121,8 @@ class _SignFormState extends State<SignForm> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const ForgotPassword()),
+                        MaterialPageRoute(
+                            builder: (context) => const ForgotPassword()),
                       );
                     },
                     child: const Text(
@@ -144,17 +145,20 @@ class _SignFormState extends State<SignForm> {
                         // KeyboardUtil.hideKeyboard(context);
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const LoginSuccess()),
+                          MaterialPageRoute(
+                              builder: (context) => const LoginSuccess()),
                         );
                       }
                     },
                     child: const Text('Войти'),
                     style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(Colors.orange),
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.orange),
                         textStyle: MaterialStateProperty.all(
                             const TextStyle(fontSize: 18)),
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         )))),
               ),
@@ -210,9 +214,14 @@ class _SignFormState extends State<SignForm> {
             ),
             gapPadding: 10,
           ),
-          suffixIcon: IconButton(icon: Icon(_isShown ? Icons.visibility : Icons.visibility_off), onPressed: () { setState(() {
-            _isShown = !_isShown;
-          }); },),
+          suffixIcon: IconButton(
+            icon: Icon(_isShown ? Icons.visibility : Icons.visibility_off),
+            onPressed: () {
+              setState(() {
+                _isShown = !_isShown;
+              });
+            },
+          ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(
@@ -279,7 +288,6 @@ class NoAccountText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
