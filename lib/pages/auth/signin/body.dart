@@ -59,6 +59,7 @@ class SignForm extends StatefulWidget {
 }
 
 class _SignFormState extends State<SignForm> {
+  bool _isShown = true;
   final _formKey = GlobalKey<FormState>();
   String? email;
   String? password;
@@ -170,7 +171,7 @@ class _SignFormState extends State<SignForm> {
 
   TextFormField buildPasswordFormField() {
     return TextFormField(
-      obscureText: true,
+      obscureText: _isShown,
       onChanged: (value) {
         if (value.isNotEmpty && errors.contains(kPassNullError)) {
           setState(() {
@@ -209,7 +210,9 @@ class _SignFormState extends State<SignForm> {
             ),
             gapPadding: 10,
           ),
-          suffixIcon: const Icon(CupertinoIcons.eye_slash),
+          suffixIcon: IconButton(icon: Icon(_isShown ? Icons.visibility : Icons.visibility_off), onPressed: () { setState(() {
+            _isShown = !_isShown;
+          }); },),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(
