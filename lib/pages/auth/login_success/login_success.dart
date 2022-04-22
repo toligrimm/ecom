@@ -2,6 +2,8 @@ import 'package:ecom/pages/homepage.dart';
 import 'package:flutter/material.dart';
 
 class LoginSuccess extends StatefulWidget {
+  static String routeName = "/login_success";
+
   const LoginSuccess({Key? key}) : super(key: key);
 
   @override

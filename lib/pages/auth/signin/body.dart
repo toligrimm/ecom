@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../constants.dart';
 import '../../../form_error.dart';
 import 'forgot_password.dart';
-import 'login_success.dart';
+import '../login_success/login_success.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -143,11 +143,7 @@ class _SignFormState extends State<SignForm> {
                       if (_formKey.currentState!.validate()) {
                         _formKey.currentState!.save();
                         // KeyboardUtil.hideKeyboard(context);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LoginSuccess()),
-                        );
+                        Navigator.pushNamed(context, LoginSuccess.routeName);
                       }
                     },
                     child: const Text('Войти'),
@@ -177,28 +173,20 @@ class _SignFormState extends State<SignForm> {
     return TextFormField(
       obscureText: _isShown,
       onChanged: (value) {
-        if (value.isNotEmpty && errors.contains(kPassNullError)) {
-          setState(() {
-            errors.remove(kPassNullError);
-          });
-          if (value.length >= 8 && errors.contains(kShortPassError)) {
-            setState(() {
-              errors.remove(kShortPassError);
-            });
-          }
+        if (value.isNotEmpty) {
+          removeError(error: kPassNullError);
+        } else if (value.length >= 8) {
+          removeError(error: kShortPassError);
         }
+        return null;
       },
       validator: (value) {
-        if (value!.isEmpty && !errors.contains(kPassNullError)) {
-          setState(() {
-            errors.add(kPassNullError);
-          });
-
-          if (value.length < 8 && !errors.contains(kShortPassError)) {
-            setState(() {
-              errors.add(kShortPassError);
-            });
-          }
+        if (value!.isEmpty) {
+          addError(error: kPassNullError);
+          return "";
+        } else if (value.length < 8) {
+          addError(error: kShortPassError);
+          return "";
         }
         return null;
       },
