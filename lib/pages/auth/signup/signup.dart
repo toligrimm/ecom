@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
-import '../../../form_error.dart';
+import '../../../helpers/constants.dart';
+import '../../../helpers/form_error.dart';
 import '../complete_page/complete_page.dart';
 
 class SignUp extends StatefulWidget {

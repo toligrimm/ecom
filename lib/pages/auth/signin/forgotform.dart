@@ -1,9 +1,9 @@
-import 'package:ecom/form_error.dart';
+import 'package:ecom/helpers/form_error.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
+import '../../../helpers/constants.dart';
 import 'body.dart';
 
 class ForgotForm extends StatefulWidget {

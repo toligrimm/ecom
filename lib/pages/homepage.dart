@@ -1,6 +1,7 @@
 import 'package:ecom/pages/catalog/shoes.dart';
 import 'package:ecom/pages/catalog/tshirts.dart';
 import 'package:flutter/material.dart';
+import '../rest_test.dart';
 import 'auth/signin/signinpage.dart';
 import 'catalog/accessories.dart';
 import 'catalog/bags.dart';
@@ -172,7 +173,7 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const Bags()),
+                  MaterialPageRoute(builder: (context) => const RestTest()),
                 );
               },
               child: Column(

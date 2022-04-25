@@ -2,8 +2,8 @@ import 'package:ecom/pages/auth/signup/signup.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
-import '../../../form_error.dart';
+import '../../../helpers/constants.dart';
+import '../../../helpers/form_error.dart';
 import 'forgot_password.dart';
 import '../login_success/login_success.dart';
 
