@@ -1,10 +1,10 @@
 import 'package:ecom/pages/catalog/shoes.dart';
 import 'package:ecom/pages/catalog/tshirts.dart';
 import 'package:flutter/material.dart';
-import '../rest_test.dart';
+import '../rest_posts/rest_pics/pics.dart';
+import '../rest_posts/restpage.dart';
 import 'auth/signin/signinpage.dart';
 import 'catalog/accessories.dart';
-import 'catalog/bags.dart';
 import 'catalog/coats.dart';
 import 'catalog/jeans.dart';
 
@@ -19,6 +19,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -149,7 +150,7 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const Accessories()),
+                  MaterialPageRoute(builder: (context) => const PicsPage()),
                 );
               },
               child: Column(
@@ -173,7 +174,7 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const RestTest()),
+                  MaterialPageRoute(builder: (context) => const RestPage()),
                 );
               },
               child: Column(
