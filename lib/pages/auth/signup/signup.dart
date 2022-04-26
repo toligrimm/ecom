@@ -61,7 +61,7 @@ class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
   String? email;
   String? password;
-  String? confirm_password;
+  String? confirmPassword;
   bool? remember = false;
   final List<String?> errors = [];
 
@@ -197,9 +197,9 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
               TextFormField(
                 obscureText: _isShown,
-                onSaved: (newValue) => confirm_password = newValue,
+                onSaved: (newValue) => confirmPassword = newValue,
                 onChanged: (value) {
-                  if (password == confirm_password) {
+                  if (password == confirmPassword) {
                     removeError(error: kMatchPassError);
                   }
                   // return null;

@@ -3,15 +3,15 @@ import 'package:ecom/rest_posts/rest_pics/request.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class PicsPage extends StatefulWidget {
-  const PicsPage({Key? key}) : super(key: key);
+class UsersPage extends StatefulWidget {
+  const UsersPage({Key? key}) : super(key: key);
 
   @override
-  State<PicsPage> createState() => _PicsPageState();
+  State<UsersPage> createState() => _UsersPageState();
 }
 
-class _PicsPageState extends State<PicsPage> {
-  List<Pics>? pictures;
+class _UsersPageState extends State<UsersPage> {
+  List<Users>? users;
   var isLoaded = false;
 
   @override
@@ -21,8 +21,8 @@ class _PicsPageState extends State<PicsPage> {
   }
 
   getData() async {
-    pictures = await Request().getPosts();
-    if (pictures != null) {
+    users = await Request().getUsers();
+    if (users != null) {
       setState(() {
         isLoaded = true;
       });
@@ -32,13 +32,13 @@ class _PicsPageState extends State<PicsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pics'),
+        title: const Text('Users'),
       ),
       body: Scrollbar(
           child: Visibility(
             visible: isLoaded,
             child: ListView.builder(
-              itemCount: pictures?.length,
+              itemCount: users?.length,
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -74,11 +74,16 @@ class _PicsPageState extends State<PicsPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              pictures![index].title,
+                              users![index].userName,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
                                   fontSize: 24, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              users![index].password,
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ],
                         ),
@@ -91,7 +96,7 @@ class _PicsPageState extends State<PicsPage> {
             replacement: const Center(
               child: CircularProgressIndicator(),
             ),
-          ),
+          )
       ),
     );
   }

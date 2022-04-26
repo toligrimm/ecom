@@ -1,37 +1,29 @@
 import 'dart:convert';
 
-List<Pics> picsFromJson(String str) => List<Pics>.from(json.decode(str).map((x) => Pics.fromJson(x)));
+List<Users> usersFromJson(String str) => List<Users>.from(json.decode(str).map((x) => Users.fromJson(x)));
 
-String picsToJson(List<Pics> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String usersToJson(List<Users> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class Pics {
-  Pics({
-    required this.albumId,
+class Users {
+  Users({
     required this.id,
-    required this.title,
-    required this.url,
-    required this.thumbnailUrl,
+    required this.userName,
+    required this.password,
   });
 
-  int albumId;
   int id;
-  String title;
-  String url;
-  String thumbnailUrl;
+  String userName;
+  String password;
 
-  factory Pics.fromJson(Map<String, dynamic> json) => Pics(
-    albumId: json["albumId"],
+  factory Users.fromJson(Map<String, dynamic> json) => Users(
     id: json["id"],
-    title: json["title"],
-    url: json["url"],
-    thumbnailUrl: json["thumbnailUrl"],
+    userName: json["userName"],
+    password: json["password"],
   );
 
   Map<String, dynamic> toJson() => {
-    "albumId": albumId,
     "id": id,
-    "title": title,
-    "url": url,
-    "thumbnailUrl": thumbnailUrl,
+    "userName": userName,
+    "password": password,
   };
 }
