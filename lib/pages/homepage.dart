@@ -55,7 +55,6 @@ class _HomePageState extends State<HomePage> {
                 primary: Colors.white,
                 elevation: 3,
                 shadowColor: Colors.deepPurple[200],
-
               ),
               onPressed: () {
                 Navigator.push(
