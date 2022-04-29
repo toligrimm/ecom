@@ -11,6 +11,7 @@ class SearchField extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -40,15 +41,20 @@ class SearchField extends StatelessWidget {
           const SizedBox(
             width: 10,
           ),
-          Container(
-            height: 45,
-            width: 45,
-            decoration: BoxDecoration(
-              color: kSecondaryColor.withOpacity(0.1),
-              shape: BoxShape.circle,
-            ),
-            child: const Icon(CupertinoIcons.cart, color: Colors.grey,),
-          ),
+          InkWell(
+            onTap: () {},
+            borderRadius: BorderRadius.circular(50),
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [Container(
+                height: 45,
+                width: 45,
+                decoration: BoxDecoration(
+                  color: kSecondaryColor.withOpacity(0.1),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(CupertinoIcons.cart, color: Colors.grey,),),
+              ],),),
           const SizedBox(
             width: 10,
           ),
@@ -57,7 +63,7 @@ class SearchField extends StatelessWidget {
             press: () {},
             icon: '',),
         ],
-      ),
+    ),
     );
   }
 }
