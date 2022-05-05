@@ -24,6 +24,12 @@ class SpecialOffers extends StatelessWidget {
           child: Row(
             children: [
               SpecialOfferCard(
+                image: "assets/images/dyson.jpg",
+                category: "Техника для красоты",
+                numOfBrands: 24,
+                press: () {},
+              ),
+              SpecialOfferCard(
                 image: "assets/images/gadgets_sale.jpg",
                 category: "Гаджеты",
                 numOfBrands: 18,
@@ -35,12 +41,7 @@ class SpecialOffers extends StatelessWidget {
                 numOfBrands: 24,
                 press: () {},
               ),
-              SpecialOfferCard(
-                image: "assets/images/dyson.jpg",
-                category: "Техника для красоты",
-                numOfBrands: 24,
-                press: () {},
-              ),
+
               const SizedBox(width: 20),
             ],
           ),

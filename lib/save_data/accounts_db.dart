@@ -6,7 +6,7 @@ import 'package:path/path.dart';
 import 'account.dart';
 
 class DatabaseHelper {
-  static const _databaseName = 'contacts.sqlite';
+  static const _databaseName = 'tableAccounts.sqlite';
   static const _databaseVersion = 1;
 
 
@@ -33,40 +33,40 @@ class DatabaseHelper {
   Future _onCreateDB(Database db, int version) async {
     //create tables
     await db.execute('''
-      CREATE TABLE ${Contact.tblContact}(
-        ${Contact.colId} INTEGER PRIMARY KEY AUTOINCREMENT,
-        ${Contact.colEmail} TEXT NOT NULL,
-        ${Contact.colFirstName} TEXT NOT NULL,
-        ${Contact.colLastName} TEXT NOT NULL,
-        ${Contact.colPassword} TEXT NOT NULL,
-        ${Contact.colPhoneNumber} TEXT NOT NULL,
+      CREATE TABLE ${Account.tblAccount}(
+        ${Account.colId} INTEGER PRIMARY KEY AUTOINCREMENT,
+        ${Account.colEmail} TEXT NOT NULL,
+        ${Account.colFirstName} TEXT NOT NULL,
+        ${Account.colLastName} TEXT NOT NULL,
+        ${Account.colPassword} TEXT NOT NULL,
+        ${Account.colPhoneNumber} TEXT NOT NULL,
       )
       ''');
   }
 
   //contact - insert
-  Future<int> insertContact(Contact contact) async {
+  Future<int> insertAccount(Account account) async {
     Database? db = await database;
-    return await db!.insert(Contact.tblContact, contact.toMap());
+    return await db!.insert(Account.tblAccount, account.toMap());
   }
 //contact - update
-  Future<int> updateContact(Contact contact) async {
+  Future<int> updateAccount(Account account) async {
     Database? db = await database;
-    return await db!.update(Contact.tblContact, contact.toMap(),
-        where: '${Contact.colId}=?', whereArgs: [contact.id]);
+    return await db!.update(Account.tblAccount, account.toMap(),
+        where: '${Account.colId}=?', whereArgs: [account.id]);
   }
 //contact - delete
-  Future<int> deleteContact(int id) async {
+  Future<int> deleteAccount(int id) async {
     Database? db = await database;
-    return await db!.delete(Contact.tblContact,
-        where: '${Contact.colId}=?', whereArgs: [id]);
+    return await db!.delete(Account.tblAccount,
+        where: '${Account.colId}=?', whereArgs: [id]);
   }
 //contact - retrieve all
-  Future<List<Contact>> fetchContacts() async {
+  Future<List<Account>> fetchAccounts() async {
     Database? db = await database;
-    List<Map> contacts = await db!.query(Contact.tblContact);
-    return contacts.isEmpty
+    List<Map> accounts = await db!.query(Account.tblAccount);
+    return accounts.isEmpty
         ? []
-        : contacts.map((x) => Contact.fromMap(x)).toList();
+        : accounts.map((x) => Account.fromMap(x)).toList();
   }
 }

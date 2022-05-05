@@ -66,7 +66,7 @@
 //
 // }
 //
-class Contact {
+class Account {
   int? id;
   String? email;
   String? password;
@@ -74,7 +74,7 @@ class Contact {
   String? lastName;
   String? phoneNumber;
 
-  static const tblContact = 'contacts';
+  static const tblAccount = 'contacts';
   static const colId = 'id';
   static const colEmail = 'email';
   static const colFirstName = 'firstName';
@@ -82,11 +82,11 @@ class Contact {
   static const colPassword = 'password';
   static const colPhoneNumber = 'phoneNumber';
 
-  Contact({this.id, this.email, this.firstName, this.lastName,this.password,this.phoneNumber,});
+  Account({this.id, this.email, this.firstName, this.lastName,this.password,this.phoneNumber,});
 
 
 
-  Contact.fromMap(Map<dynamic, dynamic> map) {
+  Account.fromMap(Map<dynamic, dynamic> map) {
     id = map[colId];
     email = map[colEmail];
     firstName = map[colFirstName];

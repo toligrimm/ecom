@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../helpers/constants.dart';
 import '../../../helpers/form_error.dart';
-import '../../../save_data/account.dart';
 
+
+import '../../../save_data/account.dart';
 import '../complete_page/complete_page.dart';
 
 class SignUp extends StatefulWidget {
@@ -58,7 +59,7 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
-  final Contact _contact = Contact();
+  final Account _contact = Account();
 
 
   final _formKey = GlobalKey<FormState>();
