@@ -66,3 +66,39 @@
 //
 // }
 //
+class Contact {
+  int? id;
+  String? email;
+  String? password;
+  String? firstName;
+  String? lastName;
+  String? phoneNumber;
+
+  static const tblContact = 'contacts';
+  static const colId = 'id';
+  static const colEmail = 'email';
+  static const colFirstName = 'firstName';
+  static const colLastName = 'lastName';
+  static const colPassword = 'password';
+  static const colPhoneNumber = 'phoneNumber';
+
+  Contact({this.id, this.email, this.firstName, this.lastName,this.password,this.phoneNumber,});
+
+
+
+  Contact.fromMap(Map<dynamic, dynamic> map) {
+    id = map[colId];
+    email = map[colEmail];
+    firstName = map[colFirstName];
+    lastName = map[colLastName];
+    password = map[colPassword];
+    phoneNumber = map[colPhoneNumber];
+  }
+
+
+  Map<String, dynamic> toMap() {
+    var map = <String, dynamic>{colEmail: email, colFirstName: firstName, colLastName: lastName, colPassword: password, colPhoneNumber: phoneNumber};
+    map[colId] = id;
+    return map;
+  }
+}

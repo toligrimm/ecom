@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../../../helpers/constants.dart';
 import '../../../helpers/form_error.dart';
+import '../../../save_data/account.dart';
+
 import '../complete_page/complete_page.dart';
 
 class SignUp extends StatefulWidget {
@@ -57,8 +58,12 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
-  bool _isShown = true;
+  final Contact _contact = Contact();
+
+
   final _formKey = GlobalKey<FormState>();
+
+  bool _isShown = true;
   String? email;
   String? password;
   String? confirmPassword;
@@ -81,6 +86,8 @@ class _SignUpFormState extends State<SignUpForm> {
     }
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -96,7 +103,7 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
               TextFormField(
                 keyboardType: TextInputType.emailAddress,
-                onSaved: (newValue) => email = newValue,
+                onSaved: (newValue) => _contact.email = newValue,
                 onChanged: (value) {
                   if (value.isNotEmpty) {
                     removeError(error: kEmailNullError);

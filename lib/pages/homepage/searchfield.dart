@@ -15,11 +15,11 @@ class SearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(
         children: [
           Container(
-            width: 300,
+            width: 280,
             height: 50,
             decoration: BoxDecoration(
               color: kSecondaryColor.withOpacity(0.1),
